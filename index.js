@@ -30,8 +30,9 @@ app.use(cors());
 // // Start the server
 let server;
 if (process.env.NODE_ENV != config.test_env) {
-    console.log(`Your server is running on port ${config.port}.`);
-  server = app.listen(config.port);
+    let port=process.env.PORT || config.port;
+    console.log(`Your server is running on port ${port}.`);
+  server = app.listen(port);
 } else{
     console.log(`Your server is running on port ${config.test_port}.`);
   server = app.listen(config.test_port);
