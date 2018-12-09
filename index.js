@@ -24,19 +24,18 @@ mongoose.connect(config.database, { useMongoClient: true });
 app.use(fileUpload());
 app.use('/upload_files', express.static('upload_files'))
 
-
 // for testing
 app.use(cors());
 
-// Start the server
+// // Start the server
 let server;
 if (process.env.NODE_ENV != config.test_env) {
+    console.log(`Your server is running on port ${config.port}.`);
   server = app.listen(config.port);
-  console.log(`Your server is running on port ${config.port}.`);
 } else{
+    console.log(`Your server is running on port ${config.test_port}.`);
   server = app.listen(config.test_port);
 }
-
 
 const io = require('socket.io').listen(server);
 
@@ -53,7 +52,7 @@ app.use(logger('dev')); // Log requests to API using morgan
 // Enable CORS from client-side
 app.use((req, res, next) => {
   // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    var allowedOrigins = ['http://localhost:8080', 'http://localhost:3001', 'http://178.128.73.230:3001', 'http://localhost:3000', 'http://178.128.73.230:3000', 'http://178.128.73.230:9001', 'http://178.128.73.230:8080'];
+    var allowedOrigins = ['http://localhost', 'http://localhost:3001', 'http://localhost:3000', 'http://178.128.73.230:3000'];
     var origin = req.headers.origin;
     if(allowedOrigins.indexOf(origin) > -1){
         res.setHeader('Access-Control-Allow-Origin', origin);
