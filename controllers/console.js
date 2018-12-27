@@ -84,22 +84,25 @@ exports.create = function(req, res, next){
     tData.priority = parseInt(req.body.priority);
     tData.count = parseInt(req.body.count);
     tData.tag = req.body.tag;
-    tData.tagTitle = req.body.tagTitle;    
-  Consoles.find((err, consoles) => {
-    if(err){
-      return next(err);
-    }
-    tData.save((err, savedConsole) => {
-      if (err) {
-          res.send(err);
-      }
-      Consoles.find().exec(function (err, consoles) {
-          if (err) {
-              res.send(err);
-          }
-          return res.status(200).json({consoles: consoles});
-      });
-    });
-  }) 
+    tData.tagTitle = req.body.tagTitle;
+    if(req.body._id){
+        Consoles.findById(req.body._id, (err, existingConsole) => {
+            if(existingConsole){
+              return next(err);
+            }
+            tData.save((err, savedConsole) => {
+              if (err) {
+                  res.send(err);
+              }
+              Consoles.find().exec(function (err, consoles) {
+                  if (err) {
+                      res.send(err);
+                  }
+                  return res.status(200).json({consoles: consoles});
+              });
+            });
+        }) 
+    }    
+  
 
 }

@@ -10,6 +10,7 @@ const MessagesController = require('./controllers/messages');
 const FriendRequestsController = require('./controllers/friendrequests');
 const ChatsController = require('./controllers/chats');
 const UsersController = require('./controllers/users');
+const GamesController = require('./controllers/games');
 
 
 const express = require('express');
@@ -128,6 +129,10 @@ module.exports = function (app) {
      apiRoutes.put('/users/update/:id', UsersController.update);
      apiRoutes.post('/users/create', UsersController.create);
 
-
+     apiRoutes.get('/games', GamesController.getGames);
+     apiRoutes.post('/games', GamesController.getGames);
+     apiRoutes.delete('/games/delete/:id', GamesController.delete);
+     apiRoutes.put('/games/update/:id', GamesController.update);
+     apiRoutes.post('/games/create', GamesController.create);
 
 };

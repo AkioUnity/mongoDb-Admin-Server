@@ -10,7 +10,8 @@ const Game = new Schema({
     title: { type: String, index: true },
     imageUrl: { type: String },
     contentfulState: { type: Number, index: true, default: 1 },
-    count: { type: Number, default: 0 }
+    count: { type: Number, default: 0 },
+    priority: { type: Number, default: 0 }
 });
 
 //---------------------------------------------------------------------------
