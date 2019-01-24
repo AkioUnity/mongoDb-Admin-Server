@@ -4,8 +4,9 @@ exports.getUsers = function (req, res, next) {
     let id = req.body._id?req.body._id:'';
     let username = req.body.username?req.body.username:'';
     let email = req.body.email?req.body.email:'';
-    
-    console.log(req.body)
+    let name = req.body.name?req.body.name:'';
+
+    console.log(req.body);
     if(id){
         Users.findById(id, (err, user) => {
             //convert string to to array
@@ -19,7 +20,7 @@ exports.getUsers = function (req, res, next) {
     }
     else{
         var query = null;
-        query = {"$and": [{username:{$regex: username}}, {email:{$regex: email}}]}
+        query = {"$and": [{username:{$regex: username}}, {email:{$regex: email}}, {name:{$regex: name}}]};
         Users.find(query, (err, users) => {
             if(err) {
                 return next(err);
@@ -51,6 +52,7 @@ exports.update = function (req, res, next) {
     }
     
     tData.username = req.body.username;
+    tData.name = req.body.name;
     tData.email = req.body.email;    
     tData.dailyMatchDate = req.body.dailyMatchDate;
     tData.deviceId = req.body.deviceId;
