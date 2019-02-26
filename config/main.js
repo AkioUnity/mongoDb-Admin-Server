@@ -3,8 +3,8 @@ module.exports = {
   // Secret key for JWT signing and encryption
   secret: 'super secret passphrase',
 
-  database: 'mongodb://ggconnect:connect123@ds157475.mlab.com:57475/ggconnectdevelopment',  //dev server
-    // database: 'mongodb://ggconnect:l8k3rs@ds247839-a0.mlab.com:47839,ds247839-a1.mlab.com:47839/ggconnect?replicaSet=rs-ds247839',  //Prod
+  // database: 'mongodb://ggconnect:connect123@ds157475.mlab.com:57475/ggconnectdevelopment',  //dev server
+    database: 'mongodb://ggconnect:l8k3rs@ds247839-a0.mlab.com:47839,ds247839-a1.mlab.com:47839/ggconnect?replicaSet=rs-ds247839',  //Prod
 
    // database: 'mongodb://localhost:27017/scdev',
     // Setting port for server
